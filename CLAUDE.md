@@ -158,6 +158,9 @@ The 150-line rule applies only to backend and worker (Python) files.
 - **NEVER push directly to `dev`**
 - Always work on a `feature/` branch
 - Branch naming: `feature/phase-X-description` (e.g. `feature/phase-2-models`)
+- `feature/*` branches always PR into `dev`, never into `main`
+- `dev` PRs into `main` only when releasing a stable version
+- GitHub PR base branch must always be set to `dev`, never `main`
 
 ### Commit policy
 - Do NOT auto-commit
