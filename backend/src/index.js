@@ -17,6 +17,11 @@ import { createInternalRouter } from './routes/internal.js';
 import { createWsHealthRouter } from './routes/ws-health.js';
 import WebSocketServer from './services/events/ws-server.js';
 import logger from './utils/logger.js';
+import authRouter from './routes/auth.js';
+import matchesRouter from './routes/matches.js';
+import offersRouter from './routes/offers.js';
+import brandsRouter from './routes/brands.js';
+import sportsRouter from './routes/sports.js';
 
 const PORT = process.env.PORT || 4000;
 
@@ -30,6 +35,13 @@ app.use(express.json());
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', service: 'sixalert-backend' });
 });
+
+// public REST routes
+app.use('/auth', authRouter);
+app.use('/matches', matchesRouter);
+app.use('/offers', offersRouter);
+app.use('/brands', brandsRouter);
+app.use('/sports', sportsRouter);
 
 // 404 handler — must come after all routes
 app.use((_req, res) => res.status(404).json({ error: 'Not found' }));
