@@ -28,7 +28,7 @@ sixalert/
 │   │   ├── models/        ← Mongoose schemas
 │   │   ├── routes/        ← Express route handlers
 │   │   ├── services/      ← business logic (offer engine, websocket, notifications)
-│   │   │   ├── cricket/   ← 3-layer data pipeline
+│   │   │   ├── events/    ← receives BallEvents from worker, triggers offer engine
 │   │   │   ├── offers/    ← trigger engine
 │   │   │   └── notifications/
 │   │   ├── middleware/    ← auth, rate limiting, error handling
