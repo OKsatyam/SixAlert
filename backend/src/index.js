@@ -22,6 +22,9 @@ import matchesRouter from './routes/matches.js';
 import offersRouter from './routes/offers.js';
 import brandsRouter from './routes/brands.js';
 import sportsRouter from './routes/sports.js';
+import { requireAuth, requireAdmin } from './middleware/auth.js';
+import adminUsersRouter from './routes/admin/users.js';
+import adminLogsRouter from './routes/admin/logs.js';
 
 const PORT = process.env.PORT || 4000;
 
@@ -42,6 +45,10 @@ app.use('/matches', matchesRouter);
 app.use('/offers', offersRouter);
 app.use('/brands', brandsRouter);
 app.use('/sports', sportsRouter);
+
+// admin routes — JWT required + admin role
+app.use('/admin/users', requireAuth, requireAdmin, adminUsersRouter);
+app.use('/admin/logs', requireAuth, requireAdmin, adminLogsRouter);
 
 // 404 handler — must come after all routes
 app.use((_req, res) => res.status(404).json({ error: 'Not found' }));
